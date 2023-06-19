@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.hasMany(models.Post, {
         foreignKey: {
-          name: "user_id",
+          name: "userId",
         },
       });
     }
@@ -24,6 +24,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "User",
+      defaultScope: {
+        attributes: {
+          exclude: ["password"],
+        },
+      },
     }
   );
   return User;
