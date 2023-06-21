@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthProvider";
 import ProtectedLayout from "./components/ProtectedLayout";
 import LoginPage from "./pages/Login";
+import Posts from "./pages/Posts";
 
 export default function App() {
   return (
@@ -14,7 +15,7 @@ export default function App() {
             path="/posts"
             element={
               <ProtectedLayout>
-                <h2>Posts</h2>
+                <Posts />
               </ProtectedLayout>
             }
           ></Route>
