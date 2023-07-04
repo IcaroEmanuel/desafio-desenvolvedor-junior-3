@@ -6,7 +6,7 @@ const routes = require('./routes');
 
 const app = express();
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3001;
 
 const corsOptions ={
   origin:'http://localhost:3000', 
@@ -14,14 +14,6 @@ const corsOptions ={
   optionSuccessStatus:200
 }
 app.use(cors(corsOptions));
-
-// app.use((_request, response, next) => {
-//   response.header('Access-Control-Allow-Origin', '*');
-//   response.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//   response.header('Access-Control-Allow-Headers', '*');
-//   app.use(cors());
-//   next();
-// })
 
 routes(app);
 
