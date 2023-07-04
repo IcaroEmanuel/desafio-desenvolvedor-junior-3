@@ -3,6 +3,7 @@ import { AuthProvider } from "./context/AuthProvider";
 import ProtectedLayout from "./components/ProtectedLayout";
 import LoginPage from "./pages/Login";
 import Posts from "./pages/Posts";
+import RegisterPage from "./pages/Register";
 
 export default function App() {
   return (
@@ -22,6 +23,9 @@ export default function App() {
         </Routes>
         <Routes>
           <Route path="/login" element={<LoginPage />}></Route>
+        </Routes>
+        <Routes>
+          <Route path="/register" element={<RegisterPage />}></Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>

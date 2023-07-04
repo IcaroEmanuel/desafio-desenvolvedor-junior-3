@@ -6,7 +6,6 @@ const PostsService = {
     try {
       const token = getUserLocalStorage();
       const headers = { Authorization: `Bearer ${token.token}` };
-      console.log("headers", headers);
       const response = await Api.get("/posts", { headers });
       return response.data;
     } catch (error) {
