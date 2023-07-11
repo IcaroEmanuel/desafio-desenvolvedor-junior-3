@@ -19,8 +19,6 @@ export const AuthProvider = ({ children }) => {
 
     const payload = { token: response.accessToken, email };
 
-    console.log('payload', payload);
-
     setUser(payload);
     setUserLocalStorage(payload);
   }
