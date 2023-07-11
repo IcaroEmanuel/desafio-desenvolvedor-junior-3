@@ -71,10 +71,16 @@ class PostController {
         where: {
           id: Number(id),
         },
+        include: [
+          {
+            model: db.User,
+            attributes: ["name", "email"],
+          },
+        ],
       });
 
       if (!post) {
-        return res.status(404).json({ message: 'Post não encontrado.' });
+        return res.status(404).json({ message: "Post não encontrado." });
       }
 
       return res.status(200).json(post);
@@ -88,15 +94,13 @@ class PostController {
 
     const post = await db.Post.findByPk(id);
 
-    console.log('post', post);
-
     if (!post) {
-      return res.status(404).json({ message: 'Post não encontrado.' });
+      return res.status(404).json({ message: "Post não encontrado." });
     }
 
     await post.destroy();
 
-    return res.status(200).json({ message: 'Post deletado com sucesso.' });
+    return res.status(200).json({ message: "Post deletado com sucesso." });
   }
 }
 
