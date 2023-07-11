@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import RegisterService from "../../services/RegisterApi/registerApi";
+import RegisterService from "../../services/UserApi/userApi";
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
