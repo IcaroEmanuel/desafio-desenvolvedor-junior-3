@@ -29,6 +29,16 @@ class UserService {
       throw new Error('Erro ao cadastrar usuário.');
     }
   }
+
+  static async getUsers() {
+    try {
+      const users = await db.User.findAll();
+
+      return users;
+    } catch (error) {
+      throw new Error('Nenhum usuário encontrado');
+    }
+  }
 }
 
 module.exports = UserService;

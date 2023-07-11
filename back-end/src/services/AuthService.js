@@ -6,7 +6,7 @@ const jwtSecret = require("../config/jwtSecret")
 class AuthService {
   static async login(data) {
     const user = await db.User.findOne({
-      attributes: ['id', 'email', 'password'],
+      attributes: ['id','name', 'email', 'password'],
       where: {
         email: data.email,
       }
