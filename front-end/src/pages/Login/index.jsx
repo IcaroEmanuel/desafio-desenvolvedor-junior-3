@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider/useAuth";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   const auth = useAuth();
   const navigate = useNavigate();
@@ -18,19 +19,32 @@ export default function LoginPage() {
 
     try {
       await auth.authenticate(userData.email, userData.password);
-  
-      navigate('/posts');
-      
-    } catch (error) {
-      console.log('error', error);
-    }
 
-   
+      navigate("/posts");
+    } catch (error) {
+      setError(true);
+      console.log("error", error);
+    }
   }
 
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      {error && (
+        <div className="bg-slate-100 text-slate-900 w-2/6 p-2">
+          <div class="flex">
+            <span class="material-symbols-outlined text-green-900">done</span>
+            <strong class="me-auto">Email ou senha incorretos!</strong>
+            <button
+              type="button"
+              onClick={() => setError(false)}
+            >
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+        </div>
+      )}
+
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-10 w-auto"
@@ -73,14 +87,6 @@ export default function LoginPage() {
                 >
                   Senha
                 </label>
-                {/* <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >
-                    Esqueceu a senha?
-                  </a>
-                </div> */}
               </div>
               <div className="mt-2">
                 <input
